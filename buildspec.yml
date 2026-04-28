@@ -4,13 +4,18 @@ phases:
   install:
     commands:
       - echo "Installing dependencies"
-      - apt-get update
-      - apt-get install -y pandoc
+      - yum update -y
+      - yum install -y pandoc awscli
 
   build:
     commands:
       - echo "Converting README.md to HTML"
       - pandoc README.md -o index.html
+
+  post_build:
+    commands:
+      - echo "Uploading to S3 bucket $S3_BUCKET"
+      - aws s3 cp index.html s3://$S3_BUCKET/index.html
 
 artifacts:
   files:
