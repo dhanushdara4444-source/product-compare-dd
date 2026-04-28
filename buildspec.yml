@@ -16,4 +16,4 @@ phases:
   post_build:
     commands:
       - echo Deploying to S3...
-      - aws s3 sync dist/ s3://$BUCKET_NAME --delete --acl public-read
+      - aws s3 sync dist/ s3://$dhanush-static-web-app-001 --delete --acl public-read
