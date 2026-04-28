@@ -1,0 +1,17 @@
+version: 0.2
+
+phases:
+  install:
+    commands:
+      - echo "Installing dependencies"
+      - apt-get update
+      - apt-get install -y pandoc
+
+  build:
+    commands:
+      - echo "Converting README.md to HTML"
+      - pandoc README.md -o index.html
+
+artifacts:
+  files:
+    - index.html
